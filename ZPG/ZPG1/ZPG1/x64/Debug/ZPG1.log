@@ -1,0 +1,9 @@
+﻿  Scene.cpp
+C:\Users\Jan\Desktop\ZPG\ZPG\ZPG1\ZPG1\Scene.cpp(85,25): warning C4305: argument: zkrácení z: double na: float
+C:\Users\Jan\Desktop\ZPG\ZPG\ZPG1\ZPG1\Scene.cpp(89,26): warning C4305: argument: zkrácení z: double na: float
+C:\Users\Jan\Desktop\ZPG\ZPG\ZPG1\ZPG1\Scene.cpp(93,22): warning C4305: argument: zkrácení z: double na: float
+C:\Users\Jan\Desktop\ZPG\ZPG\ZPG1\ZPG1\Scene.cpp(97,23): warning C4305: argument: zkrácení z: double na: float
+C:\Users\Jan\Desktop\ZPG\ZPG\ZPG1\ZPG1\Scene.cpp(112,29): warning C4244: argument: time_t se převádí na unsigned int; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\ZPG\ZPG\ZPG1\ZPG1\Scene.cpp(121,32): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\ZPG\ZPG\ZPG1\ZPG1\Scene.cpp(134,32): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
+  ZPG1.vcxproj -> C:\Users\Jan\Desktop\ZPG\ZPG\ZPG1\x64\Debug\ZPG1.exe
