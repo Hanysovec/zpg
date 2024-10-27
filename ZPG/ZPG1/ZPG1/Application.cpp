@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "Scene.h"
+
 Application* Application::instance = nullptr;
+
 Application::Application(int width, int height, const char* title) {
     if (!glfwInit()) {
         fprintf(stderr, "ERROR: could not start GLFW\n");
@@ -27,14 +29,21 @@ Application::Application(int width, int height, const char* title) {
 
     scene = new Scene(1);
     scene->initialize();
-    sceneUsed = 1;
     scene2 = new Scene(2);
     scene2->initialize();
+    scene3 = new Scene(3);
+    scene3->initialize();
+    scene4 = new Scene(4);
+    scene4->initialize();
+
+    currentSceneIndex = 1;
     Application::instance = this;
 }
 
 Application::~Application() {
     delete scene;
+    delete scene2;
+    delete scene3;
     glfwDestroyWindow(window);
     glfwTerminate();
 }
@@ -48,28 +57,38 @@ void Application::run() {
 
 void Application::render() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     if (moveForwardPressed) {
-        instance->scene->moveForward();
+        instance->getCurrentScene()->moveForward();
     }
     if (moveBackwardPressed) {
-        instance->scene->moveBackward();
+        instance->getCurrentScene()->moveBackward();
     }
     if (moveRightPressed) {
-        instance->scene->moveRight();
+        instance->getCurrentScene()->moveRight();
     }
     if (moveLeftPressed) {
-        instance->scene->moveLeft();
+        instance->getCurrentScene()->moveLeft();
     }
-    scene->draw();
+
+    getCurrentScene()->draw();
 
     glfwSwapBuffers(window);
     glfwPollEvents();
 }
 
 void Application::swapScene() {
-    Scene* temp = scene;
-    scene = scene2;
-    scene2 = temp;
+    currentSceneIndex = (currentSceneIndex % 4) + 1;
+}
+
+Scene* Application::getCurrentScene() const {
+    switch (currentSceneIndex) {
+    case 1: return scene;
+    case 2: return scene2;
+    case 3: return scene3;
+    case 4: return scene4;
+    default: return nullptr;
+    }
 }
 
 void Application::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -114,6 +133,7 @@ void Application::key_callback(GLFWwindow* window, int key, int scancode, int ac
         }
     }
 }
+
 void Application::mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     static float lastX = xpos;
     static float lastY = ypos;
@@ -126,7 +146,7 @@ void Application::mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     offsetX *= sensitivity;
     offsetY *= sensitivity;
 
-    instance->scene->rotate(offsetX, offsetY);
+    instance->getCurrentScene()->rotate(offsetX, offsetY);
 }
 
 void Application::window_size_callback(GLFWwindow* window, int width, int height) {

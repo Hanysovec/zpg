@@ -13,12 +13,15 @@ private:
     GLFWwindow* window;
     Scene* scene;
     Scene* scene2;
-    int sceneUsed;
+    Scene* scene3;
+    Scene* scene4;
+    int currentSceneIndex;
     void render();
     static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
     static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
     static void window_size_callback(GLFWwindow* window, int width, int height);
     void swapScene();
+    Scene* getCurrentScene() const;
     static Application* instance;
     bool moveForwardPressed = false;
     bool moveBackwardPressed = false;

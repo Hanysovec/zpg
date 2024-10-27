@@ -13,6 +13,8 @@ DrawableObject::~DrawableObject() {
 void DrawableObject::draw() const {
     shaderProgram->use();
     shaderProgram->setModelMatrix(transform.getMatrix());
+    glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(transform.getMatrix())));
+    shaderProgram->setNormalMatrix(normalMatrix);
     model->draw();
     shaderProgram->stop();
 }

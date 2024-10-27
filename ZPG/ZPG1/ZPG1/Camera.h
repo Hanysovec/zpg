@@ -1,25 +1,20 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "Observer.h"
-#include <vector>
-class Camera {
+#include "Subject.h"
+
+class Camera : public Subject {
 public:
     Camera();
     glm::mat4 getViewMatrix() const;
     glm::mat4 getProjectionMatrix() const;
-
-    void setPosition(const glm::vec3& position);
-    void setTarget(const glm::vec3& target);
-    void setProjection(float fov, float aspectRatio, float nearPlane, float farPlane);
+    glm::vec3 getPosition() const;
 
     void moveForward(float distance);
     void moveBackward(float distance);
     void moveRight(float distance);
     void moveLeft(float distance);
     void rotate(float yaw, float pitch);
-    void addObserver(Observer* observer);
-    void notifyObservers();
 
 private:
     glm::vec3 position;
@@ -30,8 +25,6 @@ private:
     glm::vec3 forward;
     float yaw;
     float pitch;
-    std::vector<Observer*> observers;
 
     void updateViewMatrix();
 };
-

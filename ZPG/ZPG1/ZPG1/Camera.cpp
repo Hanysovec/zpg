@@ -2,7 +2,7 @@
 #include "Observer.h"
 
 Camera::Camera()
-    : position(glm::vec3(0.0f, 0.0f, 0.5f)),
+    : position(glm::vec3(0.0f, 0.5f, 0.5f)),
     target(glm::vec3(0.0f, 0.0f, 0.0f)),
     up(glm::vec3(0.0f, 1.0f, 0.0f)),
     yaw(0.0f),
@@ -13,7 +13,6 @@ Camera::Camera()
     updateViewMatrix();
 }
 
-
 glm::mat4 Camera::getViewMatrix() const {
     return viewMatrix;
 }
@@ -22,9 +21,14 @@ glm::mat4 Camera::getProjectionMatrix() const {
     return projectionMatrix;
 }
 
+glm::vec3 Camera::getPosition() const
+{
+    return position;
+}
+
 void Camera::updateViewMatrix() {
     viewMatrix = glm::lookAt(position, target, up);
-    notifyObservers();
+    notifyObservers(viewMatrix, projectionMatrix, position);
 }
 
 void Camera::moveForward(float distance) {
@@ -60,7 +64,7 @@ void Camera::rotate(float deltaYaw, float deltaPitch) {
     if (pitch > 89.0f) {
         pitch = 89.0f;
     }
-        
+
     if (pitch < -89.0f) {
         pitch = -89.0f;
     }
@@ -72,14 +76,4 @@ void Camera::rotate(float deltaYaw, float deltaPitch) {
     forward = glm::normalize(front);
     target = position + forward;
     updateViewMatrix();
-}
-
-void Camera::addObserver(Observer* observer) {
-    observers.push_back(observer);
-}
-
-void Camera::notifyObservers() {
-    for (Observer* observer : observers) {
-        observer->onCameraUpdate(viewMatrix, projectionMatrix);
-    }
 }
