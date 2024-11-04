@@ -1,0 +1,25 @@
+1. Přepínání scén za běhu (Ano/Ne) (kde a jak) - Ano, pomocí šipky nahoru, zatím v Application pomoci swapScene()
+
+a) Základní scéna (Ano/Ne) - Ano (2. scéna)
+
+b) Scéna s lesem (Ano/Ne) - Ano (1. scéna)
+
+c) Scéna se čtyřmi kuličkami (Ano/Ne) - Ano (3. scena)
+
+d) Scéna pro demonstraci použití všech shaderů (Konstantní, Lambert, Phong a Blinn) (Ano/Ne) - Ano (4. scena)
+
+2. Světlo (Ano/Ne) (kde a jak máte naimplementováno, jak se updatuje změna světla) - Ano, LightSource s využitím observer (zatím se nijak nepoužívá protože neměním pozici světla)
+
+3. Základní třídy (ShaderProgram, DrowableObject, Camera, Controller) (Ano/Ne) (kdo zodpovídá za vykreslování, kde jsou uloženy modely, shadery atd.) - Ano, vykresluje Scena voláním draw() na objekty, modely jsou uloženy ve vektoru objects
+
+4. Transformace (Composite pattern) (Ano/Ne) (Máte pro transformace základní třídy? Co a jak jste použili?) - Ano, základní třídou je BaseTransform
+
+5. Základy OOP
+
+a) Encapsulation (zapouzdření) (Ano/Ne) (Kde a jak?) - Ano, například v ShaderProgram, id je privatní
+
+b) Inheritance (dědičnost) (Ano/Ne) (Kde a jak?) - Například v BaseTransform -> Rotate, Scale, Translate, nebo také Camera a LightSource které dědí ze Subject
+
+c) Polymorphism (polymorfismus neboli mnohotvárnost) (Ano/Ne) (Kde a jak?) - Ano, BaseTransform
+
+6. Vertex a fragment shadery prosím uložte do textových souboru a použijte přiložený ShaderLoader pro jejich načítání (Ano/Ne) (Kde a jak jste použili?) - Ano, využívám shaderLoader.

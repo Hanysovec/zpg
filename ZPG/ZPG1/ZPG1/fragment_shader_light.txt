@@ -1,3 +1,4 @@
+#version 330
 uniform vec3 lightPosition;
 in vec4 ex_worldPosition;
 in vec3 ex_worldNormal;

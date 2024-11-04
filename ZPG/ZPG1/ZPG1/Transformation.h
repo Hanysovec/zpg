@@ -1,8 +1,13 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "BaseTransform.h"
+#include <vector>
+#include "Scale.h"
+#include "Translate.h"
+#include "Rotate.h"
 
-class Transformation { // vector transformaci(objektu) a muzu kdykoliv pristoupit, rodicovska trida a z te dedi rotate atd.
+/*class Transformation { // vector transformaci(objektu) a muzu kdykoliv pristoupit, rodicovska trida a z te dedi rotate atd.
 public:
     Transformation();
     void translate(const glm::vec3& offset);
@@ -12,6 +17,16 @@ public:
 
 private:
     glm::mat4 modelMatrix;
+};*/
+class Transformation {
+    std::vector<BaseTransform*> transforms;
+    mutable glm::mat4 modelMatrix = glm::mat4(1.0f);
+
+public:
+    void addTranslate(const glm::vec3& offset);
+    void addRotate(float angle, const glm::vec3& axis);
+    void addScale(const glm::vec3& scaleF);
+    const glm::mat4& getMatrix() const;
 };
 
 

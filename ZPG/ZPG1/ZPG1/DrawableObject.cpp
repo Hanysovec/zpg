@@ -20,13 +20,13 @@ void DrawableObject::draw() const {
 }
 
 void DrawableObject::translate(const glm::vec3& offset) {
-    transform.translate(offset);
+    transform.addTranslate(offset);
 }
 
 void DrawableObject::rotate(float angle, const glm::vec3& axis) {
-    transform.rotate(angle, axis);
+    transform.addRotate(angle, axis);
 }
 
 void DrawableObject::scale(const glm::vec3& scale) {
-    transform.scale(scale);
+    transform.addScale(scale);
 }
