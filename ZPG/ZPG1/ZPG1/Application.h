@@ -27,4 +27,5 @@ private:
     bool moveBackwardPressed = false;
     bool moveRightPressed = false;
     bool moveLeftPressed = false;
+    bool k_pressed = true;
 };

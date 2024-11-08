@@ -48,6 +48,9 @@ Scene::~Scene() {
     for (auto object : objects) {
         delete object;
     }
+    for (auto light : lights) {
+        delete light;
+    }
 }
 
 void Scene::moveForward() {
@@ -68,12 +71,37 @@ void Scene::moveRight() {
 void Scene::rotate(float yaw, float pitch) {
     camera->rotate(yaw, pitch);
 }
+void Scene::addLight(glm::vec3 position, ShaderProgram* shader) {
+    LightSource* newLight = new LightSource(position);
+    newLight->addObserver(shader);
+    lights.push_back(newLight);
+}
+void Scene::addLight(glm::vec3 position, std::vector<ShaderProgram*> shaders) {
+    LightSource* newLight = new LightSource(position);
+    for (auto shader : shaders) {
+        newLight->addObserver(shader);
+    }
+    lights.push_back(newLight);
+}
+
+std::vector<glm::vec3> Scene::getLightPositions() {
+    std::vector<glm::vec3> positions;
+    for (const LightSource* light : lights) {
+        positions.push_back(light->getPosition());
+    }
+    return positions;
+}
+Camera* Scene::getCamera() {
+    return this->camera;
+}
 
 void Scene::initialize() {
-    if (sceneNum == 1) {
-        ShaderProgram* shader1 = new ShaderProgram(vertex_shader_src, fragment_shader_src);
+    if (sceneNum == 1) { // Roztočit 1 strom kolem své osy
+        ShaderProgram* shader1 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong);
         camera->addObserver(shader1);
         shader1->use();
+        addLight(glm::vec3(0.0f, 5.0f, 0.0f), shader1);
+        shader1->setLightPositions(getLightPositions());
         shader1->setProjectionMatrix(camera->getProjectionMatrix());
         shader1->setViewMatrix(camera->getViewMatrix());
         shader1->stop();
@@ -122,14 +150,13 @@ void Scene::initialize() {
     }
     else if (sceneNum == 3) {
         ShaderProgram* shader1 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong);
-        LightSource* light = new LightSource(glm::vec3(0.0f, 0.0f, 0.0f));
-        light->addObserver(shader1);
         camera->addObserver(shader1);
         shader1->use();
+        addLight(glm::vec3(0.0f, 0.0f, 0.0f), shader1);
+        shader1->setLightPositions(getLightPositions());
         shader1->setProjectionMatrix(camera->getProjectionMatrix());
         shader1->setViewMatrix(camera->getViewMatrix());
         shader1->setViewPosition(camera->getPosition());
-        shader1->setLightPosition(light->getPosition());
         shader1->stop();
 
         glm::vec3 positions[] = {
@@ -147,20 +174,20 @@ void Scene::initialize() {
     }
     else if (sceneNum == 4) {
         std::vector<ShaderProgram*> shaders;
-        LightSource* light = new LightSource(glm::vec3(0.0f, 0.0f, 0.0f));
         shaders.push_back(new ShaderProgram(vertex_shader_src, fragment_shader_src));
         shaders.push_back(new ShaderProgram(vertex_shader_light, fragment_shader_light));
         shaders.push_back(new ShaderProgram(vertex_shader_phong, fragment_shader_phong));
         shaders.push_back(new ShaderProgram(vertex_shader_blinn, fragment_shader_blinn));
+        addLight(glm::vec3(0.0f, 0.0f, 0.0f), shaders);
+        addLight(glm::vec3(-2.0f, 2.0f, 0.0f), shaders);
         for (int i = 0; i < 4; i++) {
             camera->addObserver(shaders[i]);
-            light->addObserver(shaders[i]);
 
             shaders[i]->use();
+            shaders[i]->setLightPositions(getLightPositions());
             shaders[i]->setProjectionMatrix(camera->getProjectionMatrix());
             shaders[i]->setViewMatrix(camera->getViewMatrix());
             shaders[i]->setViewPosition(camera->getPosition());
-            shaders[i]->setLightPosition(light->getPosition());
             shaders[i]->stop();
         }
 
@@ -197,6 +224,9 @@ void Scene::addObject(DrawableObject* object) {
 }
 
 void Scene::draw() const {
+    if (sceneNum == 1) {
+        objects[0]->rotate(0.05f, glm::vec3(0.0f, 1.0f, 0.0f));
+    }
     for (const auto& object : objects) {
         object->draw();
     }

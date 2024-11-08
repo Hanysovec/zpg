@@ -1,29 +1,8 @@
-﻿  Scene.cpp
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(54,25): warning C4305: argument: zkrácení z: double na: float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(58,26): warning C4305: argument: zkrácení z: double na: float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(62,22): warning C4305: argument: zkrácení z: double na: float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(66,23): warning C4305: argument: zkrácení z: double na: float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(86,29): warning C4244: argument: time_t se převádí na unsigned int; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(95,32): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(108,32): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(143,38): warning C4305: argument: zkrácení z: double na: T
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(143,38): warning C4305:         with
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(143,38): warning C4305:         [
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(143,38): warning C4305:             T=float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(143,38): warning C4305:         ]
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(174,34): warning C4305: argument: zkrácení z: double na: T
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(174,34): warning C4305:         with
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(174,34): warning C4305:         [
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(174,34): warning C4305:             T=float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(174,34): warning C4305:         ]
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(178,31): warning C4305: argument: zkrácení z: double na: T
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(178,31): warning C4305:         with
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(178,31): warning C4305:         [
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(178,31): warning C4305:             T=float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(178,31): warning C4305:         ]
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(186,32): warning C4305: argument: zkrácení z: double na: T
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(186,32): warning C4305:         with
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(186,32): warning C4305:         [
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(186,32): warning C4305:             T=float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(186,32): warning C4305:         ]
+﻿  Application.cpp
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(148,24): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(149,24): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(150,19): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(151,19): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(152,13): warning C4244: =: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(153,13): warning C4244: =: double se převádí na float; může dojít ke ztrátě dat.
   ZPG1.vcxproj -> C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\x64\Debug\ZPG1.exe

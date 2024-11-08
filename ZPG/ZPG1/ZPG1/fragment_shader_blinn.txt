@@ -1,17 +1,27 @@
 #version 330
+#define MAX_LIGHTS 10
 uniform vec3 viewPosition;
-uniform vec3 lightPosition;
+uniform vec3 lightPositions[MAX_LIGHTS];
+uniform int numLights;
 in vec4 ex_worldPosition;
 in vec3 ex_worldNormal;
 out vec4 out_Color;
 void main(void) {
-vec3 lightVector = normalize(lightPosition - vec3(ex_worldPosition));
-vec3 viewDir = normalize(viewPosition - vec3(ex_worldPosition));
-vec3 halfVector = normalize(lightVector + viewDir);
-float diff = max(dot(lightVector, normalize(ex_worldNormal)), 0.0);
-float spec = pow(max(dot(normalize(ex_worldNormal), halfVector), 0.0), 32.0);
-vec4 diffuse = diff * vec4(0.385, 0.647, 0.812, 1.0);
-vec4 specular = spec * vec4(1.0, 1.0, 1.0, 1.0);
-vec4 ambient = vec4(0.1, 0.1, 0.1, 1.0);
-out_Color = ambient + diffuse + specular;
+    vec4 ambient = vec4(0.1, 0.1, 0.1, 1.0);
+    vec4 diffuseSum = vec4(0.0);
+    vec4 specularSum = vec4(0.0);
+    vec3 normal = normalize(ex_worldNormal);
+    vec3 fragPosition = vec3(ex_worldPosition);
+    vec3 viewDir = normalize(viewPosition - fragPosition);
+    for (int i = 0; i < numLights; i++) {
+        vec3 lightVector = normalize(lightPositions[i] - fragPosition);
+        vec3 halfVector = normalize(lightVector + viewDir);
+        float diff = max(dot(lightVector, normal), 0.0);
+        vec4 diffuse = diff * vec4(0.385, 0.647, 0.812, 1.0);
+        diffuseSum += diffuse;
+        float spec = pow(max(dot(normal, halfVector), 0.0), 32.0);
+        vec4 specular = spec * vec4(1.0, 1.0, 1.0, 1.0);
+        specularSum += specular;
+    }
+    out_Color = ambient + diffuseSum + specularSum;
 }

@@ -9,7 +9,8 @@ Camera::Camera()
     pitch(0.0f)
 {
     forward = glm::normalize(target - position);
-    projectionMatrix = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
+    aspectRatio = 4.0f / 3.0f;
+    projectionMatrix = glm::perspective(glm::radians(45.0f), aspectRatio, 0.1f, 100.0f);
     updateViewMatrix();
 }
 
@@ -21,9 +22,14 @@ glm::mat4 Camera::getProjectionMatrix() const {
     return projectionMatrix;
 }
 
-glm::vec3 Camera::getPosition() const
-{
+glm::vec3 Camera::getPosition() const {
     return position;
+}
+
+void Camera::setAspectRatio(float aspectRatio) {
+    this->aspectRatio = aspectRatio;
+    projectionMatrix = glm::perspective(glm::radians(45.0f), aspectRatio, 0.1f, 100.0f);
+    notifyObservers(viewMatrix, projectionMatrix, position);
 }
 
 void Camera::updateViewMatrix() {

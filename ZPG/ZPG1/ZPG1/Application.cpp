@@ -24,7 +24,7 @@ Application::Application(int width, int height, const char* title) {
 
     glfwSetKeyCallback(window, key_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // dodelat na leve tlacitko
     glfwSetFramebufferSizeCallback(window, window_size_callback);
 
     scene = new Scene(1);
@@ -132,6 +132,16 @@ void Application::key_callback(GLFWwindow* window, int key, int scancode, int ac
             instance->moveRightPressed = false;
         }
     }
+    if (key == GLFW_KEY_K && action == GLFW_PRESS) {
+        if (instance->k_pressed) {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+            instance->k_pressed = false;
+        }
+        else {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            instance->k_pressed = true;
+        }
+    }
 }
 
 void Application::mouse_callback(GLFWwindow* window, double xpos, double ypos) {
@@ -151,4 +161,6 @@ void Application::mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 
 void Application::window_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
+    float aspectRatio = static_cast<float>(width) / static_cast<float>(height);
+    instance->getCurrentScene()->getCamera()->setAspectRatio(aspectRatio);
 }

@@ -6,6 +6,7 @@
 #include "tree.h"
 #include "bushes.h"
 #include "Camera.h"
+#include "LightSource.h"
 
 class Scene {
 public:
@@ -19,8 +20,13 @@ public:
     void moveRight();
     void moveLeft();
     void rotate(float yaw, float pitch);
+    void addLight(glm::vec3 position, ShaderProgram* shader);
+    void addLight(glm::vec3 position, std::vector<ShaderProgram*> shaders);
+    Camera* getCamera();
+    std::vector<glm::vec3> getLightPositions();
 private:
     std::vector<DrawableObject*> objects;
+    std::vector<LightSource*> lights;
     int sceneNum;
     Camera* camera;
 };
