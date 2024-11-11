@@ -8,12 +8,13 @@ public:
     DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader);
     ~DrawableObject();
     void draw() const;
-    void translate(const glm::vec3& offset);
+    /*void translate(const glm::vec3& offset);
     void rotate(float angle, const glm::vec3& axis);
-    void scale(const glm::vec3& scale);
+    void scale(const glm::vec3& scale);*/
+    Transformation* getTransformation();
 
 private:
     Model* model;
     ShaderProgram* shaderProgram;
-    Transformation transform;
+    Transformation* transform;
 };

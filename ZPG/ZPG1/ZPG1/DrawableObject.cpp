@@ -4,6 +4,7 @@
 DrawableObject::DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader) {
     this->model = new Model(vertices, size, vertexCount);
     this->shaderProgram = shader;
+    this->transform = new Transformation();
 }
 
 DrawableObject::~DrawableObject() {
@@ -12,14 +13,14 @@ DrawableObject::~DrawableObject() {
 
 void DrawableObject::draw() const {
     shaderProgram->use();
-    shaderProgram->setModelMatrix(transform.getMatrix());
-    glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(transform.getMatrix())));
+    shaderProgram->setModelMatrix(transform->getMatrix());
+    glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(transform->getMatrix())));
     shaderProgram->setNormalMatrix(normalMatrix);
     model->draw();
     shaderProgram->stop();
 }
 
-void DrawableObject::translate(const glm::vec3& offset) {
+/*void DrawableObject::translate(const glm::vec3& offset) {
     transform.addTranslate(offset);
 }
 
@@ -29,4 +30,7 @@ void DrawableObject::rotate(float angle, const glm::vec3& axis) {
 
 void DrawableObject::scale(const glm::vec3& scale) {
     transform.addScale(scale);
+}*/
+Transformation* DrawableObject::getTransformation() {
+    return this->transform;
 }

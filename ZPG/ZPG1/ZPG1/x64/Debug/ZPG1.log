@@ -1,8 +1,2 @@
-﻿  Application.cpp
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(148,24): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(149,24): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(150,19): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(151,19): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(152,13): warning C4244: =: double se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(153,13): warning C4244: =: double se převádí na float; může dojít ke ztrátě dat.
+﻿  DrawableObject.cpp
   ZPG1.vcxproj -> C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\x64\Debug\ZPG1.exe

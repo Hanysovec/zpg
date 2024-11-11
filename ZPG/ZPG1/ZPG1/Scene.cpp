@@ -119,9 +119,9 @@ void Scene::initialize() {
             int randAngle = std::rand() % 361;
 
             DrawableObject* treeObject = new DrawableObject(tree, sizeof(tree), 92814, shader1);
-            treeObject->translate(glm::vec3(randX, 0.0f, randZ));
-            treeObject->rotate(randAngle, glm::vec3(0.0f, 1.0f, 0.0f));
-            treeObject->scale(glm::vec3(randScale));
+            treeObject->getTransformation()->addTranslate(glm::vec3(randX, 0.0f, randZ));
+            treeObject->getTransformation()->addRotate(randAngle, glm::vec3(0.0f, 1.0f, 0.0f));
+            treeObject->getTransformation()->addScale(glm::vec3(randScale));
 
             addObject(treeObject);
         }
@@ -132,14 +132,14 @@ void Scene::initialize() {
             int randAngle = std::rand() % 361;
 
             DrawableObject* bushObject = new DrawableObject(bushes, sizeof(bushes), 8730, shader1);
-            bushObject->translate(glm::vec3(randX, 0.0f, randZ));
-            bushObject->rotate(randAngle, glm::vec3(0.0f, 1.0f, 0.0f));
-            bushObject->scale(glm::vec3(randScale));
+            bushObject->getTransformation()->addTranslate(glm::vec3(randX, 0.0f, randZ));
+            bushObject->getTransformation()->addRotate(randAngle, glm::vec3(0.0f, 1.0f, 0.0f));
+            bushObject->getTransformation()->addScale(glm::vec3(randScale));
 
             addObject(bushObject);
         }
         DrawableObject* floor = new DrawableObject(plain, sizeof(plain), 6, shader2);
-        floor->scale(glm::vec3(4));
+        floor->getTransformation()->addScale(glm::vec3(4));
         addObject(floor);
     }
     else if (sceneNum == 2) {
@@ -167,8 +167,8 @@ void Scene::initialize() {
         };
         for (const auto& pos : positions) {
             DrawableObject* spheres = new DrawableObject(sphere, sizeof(sphere), 2880, shader1);
-            spheres->scale(glm::vec3(0.3));
-            spheres->translate(pos);
+            spheres->getTransformation()->addScale(glm::vec3(0.3));
+            spheres->getTransformation()->addTranslate(pos);
             addObject(spheres);
         }
     }
@@ -198,20 +198,20 @@ void Scene::initialize() {
             glm::vec3(0.0f, -6.0f, 0.0f)
         };
         DrawableObject* sphere1 = new DrawableObject(sphere, sizeof(sphere), 2880, shaders[2]);
-        sphere1->scale(glm::vec3(0.2));
-        sphere1->translate(positions[0]);
+        sphere1->getTransformation()->addScale(glm::vec3(0.2));
+        sphere1->getTransformation()->addTranslate(positions[0]);
         addObject(sphere1);
         DrawableObject* suzi = new DrawableObject(suziFlat, sizeof(suziFlat), 2904, shaders[1]);
-        suzi->scale(glm::vec3(0.3));
-        suzi->translate(positions[1]);
+        suzi->getTransformation()->addScale(glm::vec3(0.3));
+        suzi->getTransformation()->addTranslate(positions[1]);
         addObject(suzi);
         DrawableObject* bush = new DrawableObject(bushes, sizeof(bushes), 8730, shaders[0]);
-        bush->scale(glm::vec3(0.5));
-        bush->translate(positions[2]);
+        bush->getTransformation()->addScale(glm::vec3(0.5));
+        bush->getTransformation()->addTranslate(positions[2]);
         addObject(bush);
         DrawableObject* tree1 = new DrawableObject(tree, sizeof(tree), 92814, shaders[3]);
-        tree1->scale(glm::vec3(0.05));
-        tree1->translate(positions[3]);
+        tree1->getTransformation()->addScale(glm::vec3(0.05));
+        tree1->getTransformation()->addTranslate(positions[3]);
         addObject(tree1);
 
 
@@ -225,7 +225,7 @@ void Scene::addObject(DrawableObject* object) {
 
 void Scene::draw() const {
     if (sceneNum == 1) {
-        objects[0]->rotate(0.05f, glm::vec3(0.0f, 1.0f, 0.0f));
+        objects[0]->getTransformation()->addRotate(0.05f, glm::vec3(0.0f, 1.0f, 0.0f));
     }
     for (const auto& object : objects) {
         object->draw();
