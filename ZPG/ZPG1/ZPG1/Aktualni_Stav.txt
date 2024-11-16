@@ -1,25 +1,9 @@
-1. Přepínání scén za běhu (Ano/Ne) (kde a jak) - Ano, pomocí šipky nahoru, zatím v Application pomoci swapScene()
+1) Transformace (můžete je libovolně skládat, přehazovat, přidat stejnou BasiCTransformation k více transformacím a kombinovat ji s dalšími, máte použitý Composit správně atd.). - Mám BasicTransformation,  dají se kombinovat atd.
 
-a) Základní scéna (Ano/Ne) - Ano (2. scéna)
+2) Máte základní testovací scénu s trojúhelníkem. - ANO
 
-b) Scéna s lesem (Ano/Ne) - Ano (1. scéna)
+3) Máte scénu se čtyřmi kuličkami a funkčním Phongovým osvětlovacím modelem. - ANO
 
-c) Scéna se čtyřmi kuličkami (Ano/Ne) - Ano (3. scena)
+4) Máte scenu s lesem, kde je více shaderů, více světel. Jak modely (stromy, i světla) se mohou dynamicky rotovat nebo pohybovat. - Modely se nemohou dynamicky rotovat, 'zatím' děláno ve while smyčce před vykreslením.
 
-d) Scéna pro demonstraci použití všech shaderů (Konstantní, Lambert, Phong a Blinn) (Ano/Ne) - Ano (4. scena)
-
-2. Světlo (Ano/Ne) (kde a jak máte naimplementováno, jak se updatuje změna světla) - Ano, LightSource s využitím observer (zatím se nijak nepoužívá protože neměním pozici světla)
-
-3. Základní třídy (ShaderProgram, DrowableObject, Camera, Controller) (Ano/Ne) (kdo zodpovídá za vykreslování, kde jsou uloženy modely, shadery atd.) - Ano, vykresluje Scena voláním draw() na objekty, modely jsou uloženy ve vektoru objects
-
-4. Transformace (Composite pattern) (Ano/Ne) (Máte pro transformace základní třídy? Co a jak jste použili?) - Ano, základní třídou je BaseTransform
-
-5. Základy OOP
-
-a) Encapsulation (zapouzdření) (Ano/Ne) (Kde a jak?) - Ano, například v ShaderProgram, id je privatní
-
-b) Inheritance (dědičnost) (Ano/Ne) (Kde a jak?) - Například v BaseTransform -> Rotate, Scale, Translate, nebo také Camera a LightSource které dědí ze Subject
-
-c) Polymorphism (polymorfismus neboli mnohotvárnost) (Ano/Ne) (Kde a jak?) - Ano, BaseTransform
-
-6. Vertex a fragment shadery prosím uložte do textových souboru a použijte přiložený ShaderLoader pro jejich načítání (Ano/Ne) (Kde a jak jste použili?) - Ano, využívám shaderLoader.
+5) Máte noční variantu lesa, kde je lépe vidět baterka pči procházení a další typy světel. - ANO

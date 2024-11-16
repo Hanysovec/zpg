@@ -141,11 +141,11 @@ void Application::key_callback(GLFWwindow* window, int key, int scancode, int ac
 void Application::mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     if (button == GLFW_MOUSE_BUTTON_RIGHT) {
         if (action == GLFW_PRESS) {
-            instance->leftMouseButtonPressed = true;
+            instance->rightMouseButtonPressed = true;
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         }
         else if (action == GLFW_RELEASE) {
-            instance->leftMouseButtonPressed = false;
+            instance->rightMouseButtonPressed = false;
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
         }
     }
@@ -163,7 +163,7 @@ void Application::mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     offsetX *= sensitivity;
     offsetY *= sensitivity;
 
-    if (instance->leftMouseButtonPressed) {
+    if (instance->rightMouseButtonPressed) {
         instance->getCurrentScene()->rotate(offsetX, offsetY);
     }
 }
