@@ -21,6 +21,7 @@ const char* vertex_shader_phong = "vertex_shader_phong.txt";
 const char* fragment_shader_phong = "fragment_shader_phong.txt";
 const char* vertex_shader_blinn = "vertex_shader_blinn.txt";
 const char* fragment_shader_blinn = "fragment_shader_blinn.txt";
+const char* fragment_shader_phong_floor = "fragment_shader_phong_floor.txt";
 
 float points1[] = {
         -0.5f,  0.0f, 0.0f, 0,0,1,
@@ -98,16 +99,20 @@ Camera* Scene::getCamera() {
 void Scene::initialize() {
     if (sceneNum == 1) { // Roztočit 1 strom kolem své osy
         ShaderProgram* shader1 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong);
+        ShaderProgram* shader2 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong_floor);
         camera->addObserver(shader1);
         shader1->use();
-        addLight(glm::vec3(0.0f, 5.0f, 0.0f), shader1);
+        addLight(glm::vec3(0.0f, 5.0f, 0.0f), { shader1, shader2 });
+        addLight(glm::vec3(2.3f, 0.3f, 0.0f), { shader1, shader2 });
+        addLight(glm::vec3(0.8f, 0.3f, 2.4f), { shader1, shader2 });
+        addLight(glm::vec3(-1.6f, 0.3f, -3.2f), { shader1, shader2 });
         shader1->setLightPositions(getLightPositions());
         shader1->setProjectionMatrix(camera->getProjectionMatrix());
         shader1->setViewMatrix(camera->getViewMatrix());
         shader1->stop();
-        ShaderProgram* shader2 = new ShaderProgram(vertex_shader_src, fragment_shader_src_floor);
         camera->addObserver(shader2);
         shader2->use();
+        shader2->setLightPositions(getLightPositions());
         shader2->setProjectionMatrix(camera->getProjectionMatrix());
         shader2->setViewMatrix(camera->getViewMatrix());
         shader2->stop();
@@ -142,13 +147,67 @@ void Scene::initialize() {
         floor->getTransformation()->addScale(glm::vec3(4));
         addObject(floor);
     }
-    else if (sceneNum == 2) {
+    else if (sceneNum == 2) { // Roztočit 1 strom kolem své osy
+        ShaderProgram* shader1 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong);
+        ShaderProgram* shader2 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong_floor);
+        SpotLight* spotLight = new SpotLight(camera->getPosition(), camera->getForward(), 12.5f, 17.5f);
+        camera->addObserver(shader1);
+        camera->addObserver(spotLight);
+        spotLight->addObserver(shader1);
+        shader1->use();
+        addLight(glm::vec3(0.0f, 10.0f, 0.0f), {shader1, shader2});
+        shader1->setLightPositions(getLightPositions());
+        shader1->setProjectionMatrix(camera->getProjectionMatrix());
+        shader1->setViewMatrix(camera->getViewMatrix());
+        shader1->setSpotlight(spotLight->getPosition(), spotLight->getDirection(), spotLight->getInnerCutOff(), spotLight->getOuterCutOff());
+        shader1->stop();
+
+        camera->addObserver(shader2);
+        spotLight->addObserver(shader2);
+        shader2->use();
+        shader2->setLightPositions(getLightPositions());
+        shader2->setProjectionMatrix(camera->getProjectionMatrix());
+        shader2->setViewMatrix(camera->getViewMatrix());
+        shader2->setSpotlight(spotLight->getPosition(), spotLight->getDirection(), spotLight->getInnerCutOff(), spotLight->getOuterCutOff());
+        shader2->stop();
+        std::srand(std::time(0));
+        for (int i = 0; i < 50; i++) {
+            float randX = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
+            float randZ = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
+            float randScale = 0.05f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (0.2f - 0.05f)));
+            int randAngle = std::rand() % 361;
+
+            DrawableObject* treeObject = new DrawableObject(tree, sizeof(tree), 92814, shader1);
+            treeObject->getTransformation()->addTranslate(glm::vec3(randX, 0.0f, randZ));
+            treeObject->getTransformation()->addRotate(randAngle, glm::vec3(0.0f, 1.0f, 0.0f));
+            treeObject->getTransformation()->addScale(glm::vec3(randScale));
+
+            addObject(treeObject);
+        }
+        for (int i = 0; i < 50; i++) {
+            float randX = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
+            float randZ = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
+            float randScale = 0.3f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (0.8f - 0.3f)));
+            int randAngle = std::rand() % 361;
+
+            DrawableObject* bushObject = new DrawableObject(bushes, sizeof(bushes), 8730, shader1);
+            bushObject->getTransformation()->addTranslate(glm::vec3(randX, 0.0f, randZ));
+            bushObject->getTransformation()->addRotate(randAngle, glm::vec3(0.0f, 1.0f, 0.0f));
+            bushObject->getTransformation()->addScale(glm::vec3(randScale));
+
+            addObject(bushObject);
+        }
+        DrawableObject* floor = new DrawableObject(plain, sizeof(plain), 6, shader2);
+        floor->getTransformation()->addScale(glm::vec3(4));
+        addObject(floor);
+    }
+    else if (sceneNum == 3) {
         ShaderProgram* shader1 = new ShaderProgram(vertex_shader, fragment_shader);
         ShaderProgram* shader2 = new ShaderProgram(vertex_shader2, fragment_shader2);
         addObject(new DrawableObject(points1, sizeof(points1), 6, shader1));
         addObject(new DrawableObject(points2, sizeof(points2), 3, shader2));
     }
-    else if (sceneNum == 3) {
+    else if (sceneNum == 4) {
         ShaderProgram* shader1 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong);
         camera->addObserver(shader1);
         shader1->use();
@@ -172,7 +231,7 @@ void Scene::initialize() {
             addObject(spheres);
         }
     }
-    else if (sceneNum == 4) {
+    else if (sceneNum == 5) {
         std::vector<ShaderProgram*> shaders;
         shaders.push_back(new ShaderProgram(vertex_shader_src, fragment_shader_src));
         shaders.push_back(new ShaderProgram(vertex_shader_light, fragment_shader_light));

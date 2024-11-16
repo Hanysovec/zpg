@@ -8,7 +8,16 @@ void Subject::removeObserver(Observer* observer) {
     observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
 }
 
-void Subject::notifyObservers(const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix, const glm::vec3& cameraPosition) {
+void Subject::notifyObservers()
+{
+    for (Observer* observer : observers) {
+        if (observer) {
+            observer->update(this);
+        }
+    }
+}
+
+/*void Subject::notifyObservers(const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix, const glm::vec3& cameraPosition) {
     for (Observer* observer : observers) {
         observer->onCameraUpdate(viewMatrix, projectionMatrix, cameraPosition);
     }
@@ -18,3 +27,10 @@ void Subject::notifyObservers(const glm::vec3& position) {
         observer->onLightUpdate(position);
     }
 }
+
+void Subject::notifyObservers(const glm::vec3& position, const glm::vec3& direction)
+{
+    for (Observer* observer : observers) {
+        observer->onSpotLightUpdate(position, direction);
+    }
+}*/

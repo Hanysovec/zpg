@@ -4,6 +4,8 @@
 #include "Shader.h"
 #include "Observer.h"
 #include "Camera.h"
+#include "LightSource.h"
+#include "SpotLight.h"
 #define MAX_LIGHTS 10
 
 class ShaderProgram : public Observer{ //udelat base shaderProgram at neposilam lightPos atd. pro konstantni shader
@@ -15,12 +17,12 @@ public:
     void setModelMatrix(const glm::mat4& modelMatrix) const;
     void setProjectionMatrix(const glm::mat4& projectionMatrix) const;
     void setViewMatrix(const glm::mat4& viewMatrix) const;
-    void onCameraUpdate(const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix, const glm::vec3& cameraPosition);
     void setNormalMatrix(const glm::mat3& normalMatrix) const;
     void setViewPosition(const glm::vec3& C) const;
-    void onLightUpdate(const glm::vec3& P); // Subject* subject; Camera* camera = dynamic_cast<Camera>(subject); if(camera) // je to class camera
     void setLightPosition(const glm::vec3& P);
     void setLightPositions(const std::vector<glm::vec3>& lightPositions);
+    void setSpotlight(const glm::vec3& position, const glm::vec3& direction, float spotLightInnerCutOff, float spotLightOuterCutOff);
+    void update(Subject* subject);
 
 private:
     GLuint id;
@@ -33,6 +35,10 @@ private:
     GLint idLightPosition;
     GLint idLightPositions[MAX_LIGHTS];
     GLint idNumLights;
+    GLint idSpotLightPosition;
+    GLint idSpotLightDirection;
+    GLint idSpotLightInCutOff;
+    GLint idSpotLightOutCutOff;
     void linkProgram();
     void sendUniform(GLint id, const glm::mat4& matrix);
     void sendUniform(GLint id, const glm::vec3& P);

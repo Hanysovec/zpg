@@ -63,7 +63,24 @@ ShaderProgram::ShaderProgram(const char* vertexFile, const char* fragmentFile) {
         idLightPositions[i] = glGetUniformLocation(id, lightPosUniformName.c_str());
     }
     idNumLights = glGetUniformLocation(id, "numLights");
+    idSpotLightPosition = glGetUniformLocation(id, "spotLightPosition");
+    if (idProjectMatrix == -1) {
+        fprintf(stderr, "Failed to get uniform location for spotLightPosition\n");
+    }
+    idSpotLightDirection = glGetUniformLocation(id, "spotLightDirection");
+    if (idProjectMatrix == -1) {
+        fprintf(stderr, "Failed to get uniform location for spotLightDirection\n");
+    }
+    idSpotLightInCutOff = glGetUniformLocation(id, "spotLightInnerCutOff");
+    if (idProjectMatrix == -1) {
+        fprintf(stderr, "Failed to get uniform location for spotLightInnerCutOff\n");
+    }
+    idSpotLightOutCutOff = glGetUniformLocation(id, "spotLightOuterCutOff");
+    if (idProjectMatrix == -1) {
+        fprintf(stderr, "Failed to get uniform location for spotLightOuterCutOff\n");
+    }
 }
+
 
 void ShaderProgram::linkProgram() {
     glLinkProgram(id);
@@ -125,21 +142,37 @@ void ShaderProgram::setLightPositions(const std::vector<glm::vec3>& lightPositio
         sendUniform(idLightPositions[i], lightPositions[i]);
     }
 }
-
-void ShaderProgram::onLightUpdate(const glm::vec3& P){
-    use();
-    //glUniform3fv(idLightPosition, 1, &P[0]);
-    sendUniform(idLightPosition, P);
-    stop();
+void ShaderProgram::setSpotlight(const glm::vec3& position, const glm::vec3& direction, float spotLightInnerCutOff, float spotLightOuterCutOff)
+{
+    sendUniform(idSpotLightDirection, direction);
+    sendUniform(idSpotLightPosition, position);
+    sendUniform(idSpotLightInCutOff, spotLightInnerCutOff);
+    sendUniform(idSpotLightOutCutOff, spotLightOuterCutOff);
 }
 
-void ShaderProgram::onCameraUpdate(const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix, const glm::vec3& cameraPosition) {
-    use();
-    /*glUniformMatrix4fv(idViewMatrix, 1, GL_FALSE, &viewMatrix[0][0]);
-    glUniformMatrix4fv(idProjectMatrix, 1, GL_FALSE, &projectionMatrix[0][0]);
-    glUniform3fv(idViewPosition, 1, &cameraPosition[0]);*/
-    sendUniform(idViewMatrix, viewMatrix);
-    sendUniform(idProjectMatrix, projectionMatrix);
-    sendUniform(idViewPosition, cameraPosition);
-    stop();
+void ShaderProgram::update(Subject* subject)
+{
+    Camera* camera = dynamic_cast<Camera*>(subject);
+    if (camera) {
+        use();
+        sendUniform(idViewMatrix, camera->getViewMatrix());
+        sendUniform(idProjectMatrix, camera->getProjectionMatrix());
+        sendUniform(idViewPosition, camera->getPosition());
+        stop();
+    }
+    LightSource* light = dynamic_cast<LightSource*>(subject);
+    if (light) {
+        use();
+        sendUniform(idLightPosition, light->getPosition());
+        stop();
+    }
+    SpotLight* spotLight = dynamic_cast<SpotLight*>(subject); 
+    if (spotLight) {
+        use();
+        sendUniform(idSpotLightDirection, spotLight->getDirection());
+        sendUniform(idSpotLightPosition, spotLight->getPosition());
+        glUniform1f(idSpotLightInCutOff, spotLight->getInnerCutOff());
+        glUniform1f(idSpotLightOutCutOff, spotLight->getOuterCutOff());
+        stop();
+    }
 }

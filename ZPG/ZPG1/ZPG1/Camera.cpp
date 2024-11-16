@@ -10,7 +10,7 @@ Camera::Camera()
 {
     forward = glm::normalize(target - position);
     aspectRatio = 4.0f / 3.0f;
-    projectionMatrix = glm::perspective(glm::radians(45.0f), aspectRatio, 0.1f, 100.0f);
+    projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 0.1f, 100.0f);
     updateViewMatrix();
 }
 
@@ -26,15 +26,20 @@ glm::vec3 Camera::getPosition() const {
     return position;
 }
 
+glm::vec3 Camera::getForward() const
+{
+    return glm::normalize(target - position);
+}
+
 void Camera::setAspectRatio(float aspectRatio) {
     this->aspectRatio = aspectRatio;
-    projectionMatrix = glm::perspective(glm::radians(45.0f), aspectRatio, 0.1f, 100.0f);
-    notifyObservers(viewMatrix, projectionMatrix, position);
+    projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 0.1f, 100.0f);
+    notifyObservers();
 }
 
 void Camera::updateViewMatrix() {
     viewMatrix = glm::lookAt(position, target, up);
-    notifyObservers(viewMatrix, projectionMatrix, position);
+    notifyObservers();
 }
 
 void Camera::moveForward(float distance) {

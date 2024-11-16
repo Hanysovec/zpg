@@ -6,7 +6,7 @@ LightSource::LightSource(glm::vec3 position){
 
 void LightSource::setPosition(glm::vec3 position){
     this->position = position;
-    notifyObservers(position);
+    notifyObservers();
 }
 
 glm::vec3 LightSource::getPosition() const{

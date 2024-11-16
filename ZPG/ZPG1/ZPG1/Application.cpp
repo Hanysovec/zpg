@@ -24,7 +24,8 @@ Application::Application(int width, int height, const char* title) {
 
     glfwSetKeyCallback(window, key_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // dodelat na leve tlacitko
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL); // dodelat na leve tlacitko
     glfwSetFramebufferSizeCallback(window, window_size_callback);
 
     scene = new Scene(1);
@@ -35,6 +36,8 @@ Application::Application(int width, int height, const char* title) {
     scene3->initialize();
     scene4 = new Scene(4);
     scene4->initialize();
+    scene5 = new Scene(5);
+    scene5->initialize();
 
     currentSceneIndex = 1;
     Application::instance = this;
@@ -78,7 +81,7 @@ void Application::render() {
 }
 
 void Application::swapScene() {
-    currentSceneIndex = (currentSceneIndex % 4) + 1;
+    currentSceneIndex = (currentSceneIndex % 5) + 1;
 }
 
 Scene* Application::getCurrentScene() const {
@@ -87,6 +90,7 @@ Scene* Application::getCurrentScene() const {
     case 2: return scene2;
     case 3: return scene3;
     case 4: return scene4;
+    case 5: return scene5;
     default: return nullptr;
     }
 }
@@ -132,14 +136,17 @@ void Application::key_callback(GLFWwindow* window, int key, int scancode, int ac
             instance->moveRightPressed = false;
         }
     }
-    if (key == GLFW_KEY_K && action == GLFW_PRESS) {
-        if (instance->k_pressed) {
-            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-            instance->k_pressed = false;
-        }
-        else {
+}
+
+void Application::mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+    if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+        if (action == GLFW_PRESS) {
+            instance->leftMouseButtonPressed = true;
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-            instance->k_pressed = true;
+        }
+        else if (action == GLFW_RELEASE) {
+            instance->leftMouseButtonPressed = false;
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
         }
     }
 }
@@ -156,7 +163,9 @@ void Application::mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     offsetX *= sensitivity;
     offsetY *= sensitivity;
 
-    instance->getCurrentScene()->rotate(offsetX, offsetY);
+    if (instance->leftMouseButtonPressed) {
+        instance->getCurrentScene()->rotate(offsetX, offsetY);
+    }
 }
 
 void Application::window_size_callback(GLFWwindow* window, int width, int height) {
