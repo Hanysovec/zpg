@@ -47,15 +47,15 @@ ShaderProgram::ShaderProgram(const char* vertexFile, const char* fragmentFile) {
         fprintf(stderr, "Failed to get uniform location for projectionMatrix\n");
     }
     idNormalMatrix = glGetUniformLocation(id, "normalMatrix");
-    if (idProjectMatrix == -1) {
+    if (idNormalMatrix == -1) {
         fprintf(stderr, "Failed to get uniform location for normalMatrix\n");
     }
     idViewPosition = glGetUniformLocation(id, "viewPosition");
-    if (idProjectMatrix == -1) {
+    if (idViewPosition == -1) {
         fprintf(stderr, "Failed to get uniform location for viewPosition\n");
     }
     idLightPosition = glGetUniformLocation(id, "lightPosition");
-    if (idProjectMatrix == -1) {
+    if (idLightPosition == -1) {
         fprintf(stderr, "Failed to get uniform location for lightPosition\n");
     }
     for (int i = 0; i < MAX_LIGHTS; i++) {
@@ -64,20 +64,40 @@ ShaderProgram::ShaderProgram(const char* vertexFile, const char* fragmentFile) {
     }
     idNumLights = glGetUniformLocation(id, "numLights");
     idSpotLightPosition = glGetUniformLocation(id, "spotLightPosition");
-    if (idProjectMatrix == -1) {
+    if (idSpotLightPosition == -1) {
         fprintf(stderr, "Failed to get uniform location for spotLightPosition\n");
     }
     idSpotLightDirection = glGetUniformLocation(id, "spotLightDirection");
-    if (idProjectMatrix == -1) {
+    if (idSpotLightDirection == -1) {
         fprintf(stderr, "Failed to get uniform location for spotLightDirection\n");
     }
     idSpotLightInCutOff = glGetUniformLocation(id, "spotLightInnerCutOff");
-    if (idProjectMatrix == -1) {
+    if (idSpotLightInCutOff == -1) {
         fprintf(stderr, "Failed to get uniform location for spotLightInnerCutOff\n");
     }
     idSpotLightOutCutOff = glGetUniformLocation(id, "spotLightOuterCutOff");
-    if (idProjectMatrix == -1) {
+    if (idSpotLightOutCutOff == -1) {
         fprintf(stderr, "Failed to get uniform location for spotLightOuterCutOff\n");
+    }
+    idDiffuse = glGetUniformLocation(id, "materialDiffuse");
+    if (idDiffuse == -1) {
+        fprintf(stderr, "Failed to get uniform location for materialDiffuse\n");
+    }
+    idAmbient = glGetUniformLocation(id, "materialAmbient");
+    if (idAmbient == -1) {
+        fprintf(stderr, "Failed to get uniform location for materialAmbient\n");
+    }
+    idSpecular = glGetUniformLocation(id, "materialSpecular");
+    if (idSpecular == -1) {
+        fprintf(stderr, "Failed to get uniform location for materialSpecular\n");
+    }
+    idTexture = glGetUniformLocation(id, "textureUnit");
+    if (idTexture == -1) {
+        fprintf(stderr, "Failed to get uniform location for textureUnit\n");
+    }
+    idSkyboxTexture = glGetUniformLocation(id, "UISky");
+    if (idSkyboxTexture == -1) {
+        fprintf(stderr, "Failed to get uniform location for UISky\n");
     }
 }
 
@@ -175,4 +195,31 @@ void ShaderProgram::update(Subject* subject)
         glUniform1f(idSpotLightOutCutOff, spotLight->getOuterCutOff());
         stop();
     }
+}
+
+void ShaderProgram::setDiffuse(glm::vec3 rd)
+{
+    sendUniform(idDiffuse, rd);
+}
+
+void ShaderProgram::setAmbient(glm::vec3 ra)
+{
+    sendUniform(idAmbient, ra);
+}
+
+void ShaderProgram::setSpecular(glm::vec3 rs)
+{
+    sendUniform(idSpecular, rs);
+}
+
+void ShaderProgram::setTexture(GLuint textureID, GLuint offset) {
+    glActiveTexture(GL_TEXTURE0 + offset);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    glUniform1i(idTexture, GL_TEXTURE0 + offset);
+}
+
+void ShaderProgram::setSkyboxTexture(GLuint textureID, GLuint offset){
+    glActiveTexture(GL_TEXTURE0 + offset);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    glUniform1i(idSkyboxTexture, GL_TEXTURE0 + offset);
 }

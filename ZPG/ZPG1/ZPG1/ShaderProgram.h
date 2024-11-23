@@ -23,6 +23,11 @@ public:
     void setLightPositions(const std::vector<glm::vec3>& lightPositions);
     void setSpotlight(const glm::vec3& position, const glm::vec3& direction, float spotLightInnerCutOff, float spotLightOuterCutOff);
     void update(Subject* subject);
+    void setDiffuse(glm::vec3 rd);
+    void setAmbient(glm::vec3 ra);
+    void setSpecular(glm::vec3 rs);
+    void setTexture(GLuint textureID, GLuint offset);
+    void setSkyboxTexture(GLuint textureID, GLuint offset);
 
 private:
     GLuint id;
@@ -39,6 +44,11 @@ private:
     GLint idSpotLightDirection;
     GLint idSpotLightInCutOff;
     GLint idSpotLightOutCutOff;
+    GLint idDiffuse;
+    GLint idSpecular;
+    GLint idAmbient;
+    GLint idTexture;
+    GLint idSkyboxTexture;
     void linkProgram();
     void sendUniform(GLint id, const glm::mat4& matrix);
     void sendUniform(GLint id, const glm::vec3& P);

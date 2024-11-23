@@ -52,7 +52,11 @@ Application::~Application() {
 }
 
 void Application::run() {
+    int a;
+    glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &a);
+    printf("Texture units: %d\n", a);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
     while (!glfwWindowShouldClose(window)) {
         render();
     }
@@ -73,7 +77,6 @@ void Application::render() {
     if (moveLeftPressed) {
         instance->getCurrentScene()->moveLeft();
     }
-
     getCurrentScene()->draw();
 
     glfwSwapBuffers(window);

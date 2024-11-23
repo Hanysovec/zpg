@@ -1,10 +1,12 @@
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Application.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\BaseTransform.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\BaseTransform.obj
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\BasicModel.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\BasicModel.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Camera.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Camera.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Controller.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Controller.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\DrawableObject.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\DrawableObject.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\LightSource.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\LightSource.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\main.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\main.obj
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Material.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Material.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Model.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Model.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Observer.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Observer.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Rotate.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Rotate.obj
@@ -13,7 +15,10 @@ C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZP
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Shader.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Shader.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\ShaderLoader.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\ShaderLoader.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\ShaderProgram.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\ShaderProgram.obj
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\SkyboxModel.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\SkyboxModel.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\SpotLight.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\SpotLight.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Subject.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Subject.obj
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Texture.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Texture.obj
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\TextureModel.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\TextureModel.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Transformation.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Transformation.obj
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Translate.cpp;C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\x64\Debug\Translate.obj

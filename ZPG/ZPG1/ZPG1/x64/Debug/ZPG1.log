@@ -1,8 +1,53 @@
 ﻿  Application.cpp
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(155,24): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(156,24): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(157,19): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(158,19): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(159,13): warning C4244: =: double se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(160,13): warning C4244: =: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(158,24): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(159,24): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(160,19): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(161,19): warning C4244: inicializování: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(162,13): warning C4244: =: double se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Application.cpp(163,13): warning C4244: =: double se převádí na float; může dojít ke ztrátě dat.
+  DrawableObject.cpp
+  Scene.cpp
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(83,25): warning C4305: argument: zkrácení z: double na: float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(87,26): warning C4305: argument: zkrácení z: double na: float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(91,22): warning C4305: argument: zkrácení z: double na: float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(95,23): warning C4305: argument: zkrácení z: double na: float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(151,29): warning C4244: argument: time_t se převádí na unsigned int; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(160,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(173,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(205,29): warning C4244: argument: time_t se převádí na unsigned int; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(214,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(227,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(261,62): warning C4305: argument: zkrácení z: double na: T
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(261,62): warning C4305:         with
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(261,62): warning C4305:         [
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(261,62): warning C4305:             T=float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(261,62): warning C4305:         ]
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(292,58): warning C4305: argument: zkrácení z: double na: T
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(292,58): warning C4305:         with
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(292,58): warning C4305:         [
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(292,58): warning C4305:             T=float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(292,58): warning C4305:         ]
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(296,55): warning C4305: argument: zkrácení z: double na: T
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(296,55): warning C4305:         with
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(296,55): warning C4305:         [
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(296,55): warning C4305:             T=float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(296,55): warning C4305:         ]
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(304,56): warning C4305: argument: zkrácení z: double na: T
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(304,56): warning C4305:         with
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(304,56): warning C4305:         [
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(304,56): warning C4305:             T=float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(304,56): warning C4305:         ]
+  ShaderProgram.cpp
+  SkyboxModel.cpp
+  main.cpp
+  Generování kódu...
+  SOIL.lib(SOIL.obj) : Našel se modul .net MSIL nebo modul zkompilovaný pomocí /GL. Propojení se restartuje s parametrem /LTCG. Výkon linkeru můžete zlepšit přidáním parametru /LTCG na příkazový řádek propojení.
+LINK : warning LNK4075: /INCREMENTAL se ignoruje kvůli specifikaci /LTCG.
+LINK : warning LNK4098: Výchozí knihovna MSVCRT je v konfliktu s použitím jiných knihoven. Použijte /NODEFAULTLIB:library.
+  Vytváří se kód.
+  Vytváření kódu se dokončilo.
+SOIL.lib(SOIL.obj) : warning LNK4099: Soubor .pdb  se nenašel s SOIL.lib(SOIL.obj) nebo na . Objekt se propojí, jako by nebyly dostupné žádné ladicí informace.
+SOIL.lib(stb_image_aug.obj) : warning LNK4099: Soubor .pdb  se nenašel s SOIL.lib(stb_image_aug.obj) nebo na . Objekt se propojí, jako by nebyly dostupné žádné ladicí informace.
+SOIL.lib(image_helper.obj) : warning LNK4099: Soubor .pdb  se nenašel s SOIL.lib(image_helper.obj) nebo na . Objekt se propojí, jako by nebyly dostupné žádné ladicí informace.
+SOIL.lib(image_DXT.obj) : warning LNK4099: Soubor .pdb  se nenašel s SOIL.lib(image_DXT.obj) nebo na . Objekt se propojí, jako by nebyly dostupné žádné ladicí informace.
   ZPG1.vcxproj -> C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\x64\Debug\ZPG1.exe

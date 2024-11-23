@@ -1,20 +1,28 @@
 #pragma once
 #include "ShaderProgram.h"
 #include "Model.h"
+#include "BasicModel.h"
 #include "Transformation.h"
+#include "Material.h"
+#include "TextureModel.h"
+#include "SkyboxModel.h"
 
 class DrawableObject {
 public:
-    DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader);
+    DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Material* material);
+    DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Material* material, Texture* texture, GLuint offset);
+    DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Texture* texture, GLuint offset);
     ~DrawableObject();
     void draw() const;
-    /*void translate(const glm::vec3& offset);
-    void rotate(float angle, const glm::vec3& axis);
-    void scale(const glm::vec3& scale);*/
+    void draw(int a) const;
     Transformation* getTransformation();
+    void setMaterial(Material* mat);
 
 private:
-    Model* model;
+    BasicModel* model;
     ShaderProgram* shaderProgram;
     Transformation* transform;
+    Material* mat;
+    Texture* texture;
+    GLuint offset;
 };
