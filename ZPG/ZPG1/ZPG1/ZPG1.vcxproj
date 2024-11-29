@@ -104,13 +104,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\Knihovny\glm-master;..\..\..\Knihovny\glfw-3.4.bin.WIN64\include;..\..\..\Knihovny\glew-2.1.0\include;..\..\..\Knihovny\soil\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\Knihovny\glm-master;..\..\..\Knihovny\glfw-3.4.bin.WIN64\include;..\..\..\Knihovny\glew-2.1.0\include;..\..\..\Knihovny\soil\include;..\..\..\Knihovny\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;glfw3.lib;glew32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\Knihovny\glfw-3.4.bin.WIN64\lib-vc2022;..\..\..\Knihovny\glew-2.1.0\lib\Release\x64;..\..\..\Knihovny\soil\lib-vc2012\Platform_x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glfw3.lib;glew32.lib;SOIL.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\Knihovny\glfw-3.4.bin.WIN64\lib-vc2022;..\..\..\Knihovny\glew-2.1.0\lib\Release\x64;..\..\..\Knihovny\soil\lib-vc2012\Platform_x64;..\..\..\Knihovny\assimp\lib\x64\v141\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,6 +140,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelLoader.cpp" />
+    <ClCompile Include="ObjectModel.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Rotate.cpp" />
     <ClCompile Include="Scale.cpp" />
@@ -167,6 +169,8 @@
     <ClInclude Include="LightSource.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelLoader.h" />
+    <ClInclude Include="ObjectModel.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="plain.h" />
     <ClInclude Include="plain_texture.h" />

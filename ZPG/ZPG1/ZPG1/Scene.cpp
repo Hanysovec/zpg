@@ -50,6 +50,9 @@ const char* fragment_shader2 = "fragment_shader2.txt";
 const char* vertex_shader_floor = "PhongVertexShader.glsl";
 const char* fragment_shader_floor = "PhongFragmentShader.glsl";
 
+const char* vertex_shader_phong_texture = "PhongVertexShader_Texture.txt";
+const char* fragment_shader_phong_texture = "PhongFragmentShader_Texture.txt";
+
 Material* matSphere = new Material(
     glm::vec3(0.1f, 0.1f, 0.1f),
     glm::vec3(0.385f, 0.647f, 0.812f),
@@ -128,16 +131,18 @@ void Scene::initialize() {
         Texture* texture_box = new Texture("posx.jpg", "negx.jpg", "posy.jpg", "negy.jpg", "posz.jpg", "negz.jpg");
         ShaderProgram* boxShader = new ShaderProgram("vertex_shader_box.txt", "fragment_shader_box.txt");
         DrawableObject* skyBox = new DrawableObject(skycube, sizeof(skycube), 108, boxShader, texture_box, 0);
+        Texture* texture_house = new Texture("house.png");
         camera->addObserver(boxShader);
         addObject(skyBox);
         ShaderProgram* shader1 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong);
         ShaderProgram* shader2 = new ShaderProgram(vertex_shader_floor, fragment_shader_floor);
+        ShaderProgram* shader3 = new ShaderProgram(vertex_shader_floor, fragment_shader_floor);
         camera->addObserver(shader1);
         shader1->use();
-        addLight(glm::vec3(0.0f, 5.0f, 0.0f), { shader1, shader2 });
-        addLight(glm::vec3(2.3f, 0.3f, 0.0f), { shader1, shader2 });
-        addLight(glm::vec3(0.8f, 0.3f, 2.4f), { shader1, shader2 });
-        addLight(glm::vec3(-1.6f, 0.3f, -3.2f), { shader1, shader2 });
+        addLight(glm::vec3(0.0f, 5.0f, 0.0f), { shader1, shader2, shader3 });
+        addLight(glm::vec3(2.3f, 0.3f, 0.0f), { shader1, shader2, shader3 });
+        addLight(glm::vec3(0.8f, 0.3f, 2.4f), { shader1, shader2, shader3 });
+        addLight(glm::vec3(-1.6f, 0.3f, -3.2f), { shader1, shader2, shader3 });
         shader1->setLightPositions(getLightPositions());
         shader1->setProjectionMatrix(camera->getProjectionMatrix());
         shader1->setViewMatrix(camera->getViewMatrix());
@@ -148,10 +153,20 @@ void Scene::initialize() {
         shader2->setProjectionMatrix(camera->getProjectionMatrix());
         shader2->setViewMatrix(camera->getViewMatrix());
         shader2->stop();
+        camera->addObserver(shader3);
+        shader3->use();
+        shader3->setLightPositions(getLightPositions());
+        shader3->setProjectionMatrix(camera->getProjectionMatrix());
+        shader3->setViewMatrix(camera->getViewMatrix());
+        shader3->stop();
         std::srand(std::time(0));
         for (int i = 0; i < 50; i++) {
-            float randX = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
-            float randZ = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
+            float randX, randZ;
+            do {
+                randX = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
+                randZ = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
+            } while (randX >= -0.7f && randX <= 0.7f && randZ >= -1.7f && randZ <= 1.7f);
+
             float randScale = 0.05f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (0.2f - 0.05f)));
             int randAngle = std::rand() % 361;
 
@@ -163,8 +178,11 @@ void Scene::initialize() {
             addObject(treeObject);
         }
         for (int i = 0; i < 50; i++) {
-            float randX = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
-            float randZ = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
+            float randX, randZ;
+            do {
+                randX = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
+                randZ = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
+            } while (randX >= -0.7f && randX <= 0.7f && randZ >= -1.7f && randZ <= 1.7f);
             float randScale = 0.3f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (0.8f - 0.3f)));
             int randAngle = std::rand() % 361;
 
@@ -178,16 +196,26 @@ void Scene::initialize() {
         DrawableObject* floor = new DrawableObject(plain_texture, sizeof(plain_texture), 6, shader2, matFloor, texture_floor, 1);
         floor->getTransformation()->addScale(glm::vec3(4));
         addObject(floor);
+
+        DrawableObject* house = new DrawableObject("house.obj", shader3, texture_house, 2);
+        house->getTransformation()->addScale(glm::vec3(0.15));
+        addObject(house);
+
+        DrawableObject* login = new DrawableObject("login.obj", shader2, texture_floor, 1);
+        login->getTransformation()->addTranslate(glm::vec3(0.0f, 1.0f, 0.0f));
+        addObject(login);
     }
     else if (sceneNum == 2) { // Roztočit 1 strom kolem své osy
         ShaderProgram* shader1 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong);
-        ShaderProgram* shader2 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong);
+        ShaderProgram* shader2 = new ShaderProgram(vertex_shader_phong_texture, fragment_shader_phong_texture);
         SpotLight* spotLight = new SpotLight(camera->getPosition(), camera->getForward(), 12.5f, 17.5f);
         camera->addObserver(shader1);
         camera->addObserver(spotLight);
         spotLight->addObserver(shader1);
         shader1->use();
-        addLight(glm::vec3(0.0f, 10.0f, 0.0f), {shader1, shader2});
+        addLight(glm::vec3(2.3f, 0.3f, 0.0f), { shader1, shader2 });
+        addLight(glm::vec3(0.8f, 0.3f, 2.4f), { shader1, shader2 });
+        addLight(glm::vec3(-1.6f, 0.3f, -3.2f), { shader1, shader2 });
         shader1->setLightPositions(getLightPositions());
         shader1->setProjectionMatrix(camera->getProjectionMatrix());
         shader1->setViewMatrix(camera->getViewMatrix());
@@ -229,7 +257,7 @@ void Scene::initialize() {
 
             addObject(bushObject);
         }
-        DrawableObject* floor = new DrawableObject(plain, sizeof(plain), 6, shader2, matFloor);
+        DrawableObject* floor = new DrawableObject(plain_texture, sizeof(plain_texture), 6, shader2, matFloor, texture_floor, 1);
         floor->getTransformation()->addScale(glm::vec3(4));
         addObject(floor);
     }

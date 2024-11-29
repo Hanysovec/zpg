@@ -87,6 +87,12 @@
     <ClCompile Include="SkyboxModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ModelLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -183,6 +189,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SkyboxModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

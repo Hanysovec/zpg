@@ -215,7 +215,7 @@ void ShaderProgram::setSpecular(glm::vec3 rs)
 void ShaderProgram::setTexture(GLuint textureID, GLuint offset) {
     glActiveTexture(GL_TEXTURE0 + offset);
     glBindTexture(GL_TEXTURE_2D, textureID);
-    glUniform1i(idTexture, GL_TEXTURE0 + offset);
+    glUniform1i(idTexture, offset);
 }
 
 void ShaderProgram::setSkyboxTexture(GLuint textureID, GLuint offset){
