@@ -30,4 +30,9 @@ private:
     bool moveRightPressed = false;
     bool moveLeftPressed = false;
     bool rightMouseButtonPressed = false;
+    int height;
+    int width;
+    int selectedObjectIndex = -1;
+    std::vector<glm::vec3> controlPoints;
+    bool selectingControlPoints = false;
 };

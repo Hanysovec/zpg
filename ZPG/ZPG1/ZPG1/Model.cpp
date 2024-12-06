@@ -1,6 +1,6 @@
 #include "Model.h"
 
-Model::Model(const float* vertices, size_t size, int vertexCount) {
+Model::Model(const float* vertices, size_t size, int vertexCount, int modelId) {
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
@@ -15,9 +15,11 @@ Model::Model(const float* vertices, size_t size, int vertexCount) {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     this->vertexCount = vertexCount;
+    this->modelId = modelId;
 }
 
 void Model::draw() const {
     glBindVertexArray(VAO);
+    glStencilFunc(GL_ALWAYS, modelId, 0xFF);
     glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 }

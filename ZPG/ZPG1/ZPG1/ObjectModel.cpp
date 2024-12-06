@@ -1,19 +1,20 @@
 #include "ObjectModel.h"
 
-ObjectModel::ObjectModel(ModelLoader::Vertex* model, int vertexCount, unsigned int* pIndices)
+ObjectModel::ObjectModel(ModelLoader::Vertex* model, int vertexCount, unsigned int* pIndices, unsigned int mNumVertices, int modelId)
 {
     this->vertexCount = vertexCount;
     this->pIndices = pIndices;
     this->model = model;
+    this->modelId = modelId;
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(ModelLoader::Vertex)*mNumVertices, this->model, GL_STATIC_DRAW);
+
     glGenVertexArrays(1, &VAO);
     if (VAO == 0) {
         printf("VAO was not generated correctly.\n");
+        exit(EXIT_FAILURE);
     }
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(ModelLoader::Vertex)*this->vertexCount, this->model, GL_STATIC_DRAW);
-
-
     glBindVertexArray(VAO);
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
@@ -33,5 +34,6 @@ ObjectModel::ObjectModel(ModelLoader::Vertex* model, int vertexCount, unsigned i
 void ObjectModel::draw() const
 {
     glBindVertexArray(VAO);
+    glStencilFunc(GL_ALWAYS, modelId, 0xFF);
     glDrawElements(GL_TRIANGLES, this->vertexCount, GL_UNSIGNED_INT, NULL);
 }

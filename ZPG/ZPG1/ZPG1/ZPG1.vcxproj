@@ -136,6 +136,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DrawableObject.cpp" />
+    <ClCompile Include="DynamicRotate.cpp" />
     <ClCompile Include="LightSource.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DrawableObject.h" />
+    <ClInclude Include="DynamicRotate.h" />
     <ClInclude Include="gift.h" />
     <ClInclude Include="LightSource.h" />
     <ClInclude Include="Material.h" />

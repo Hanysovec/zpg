@@ -1,6 +1,6 @@
 #include "TextureModel.h"
 
-TextureModel::TextureModel(const float* vertices, size_t size, int vertexCount)
+TextureModel::TextureModel(const float* vertices, size_t size, int vertexCount, int modelId)
 {
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -18,10 +18,12 @@ TextureModel::TextureModel(const float* vertices, size_t size, int vertexCount)
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     this->vertexCount = vertexCount;
+    this->modelId = modelId;
 }
 
 void TextureModel::draw() const
 {
 	glBindVertexArray(VAO);
+    glStencilFunc(GL_ALWAYS, modelId, 0xFF);
 	glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 }

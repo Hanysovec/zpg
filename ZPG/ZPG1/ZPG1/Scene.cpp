@@ -71,7 +71,7 @@ Material* matFloor = new Material(
 //Texture* texture_floor = new Texture("..\..\ZPG1\grass.png");
 
 
-Scene::Scene(int sceneNum) { this->sceneNum = sceneNum; camera = new Camera(); }
+Scene::Scene(int sceneNum) { this->sceneNum = sceneNum; camera = new Camera(); bezMove = false; }
 
 Scene::~Scene() {
     for (auto object : objects) {
@@ -124,13 +124,26 @@ Camera* Scene::getCamera() {
     return this->camera;
 }
 
+void Scene::moveBezier(int objectId, std::vector<glm::vec3> bezPoints)
+{
+    if (objectId < 0) return;
+    this->selectedObjectId = objectId;
+    A = glm::mat4(glm::vec4(-1.0, 3.0, -3.0, 1.0),
+                glm::vec4(3.0, -6.0, 3.0, 0.0),
+                glm::vec4(-3.0, 3.0, 0.0, 0.0),
+                glm::vec4(1.0, 0.0, 0.0, 0.0));
+    B = glm::mat4x3(bezPoints[0], bezPoints[1], bezPoints[2], bezPoints[3]);
+    this->bezMove = true;
+}
+
 
 void Scene::initialize() {
     Texture* texture_floor = new Texture("negy.jpg");
     if (sceneNum == 1) {
+        int modelId = 1;
         Texture* texture_box = new Texture("posx.jpg", "negx.jpg", "posy.jpg", "negy.jpg", "posz.jpg", "negz.jpg");
         ShaderProgram* boxShader = new ShaderProgram("vertex_shader_box.txt", "fragment_shader_box.txt");
-        DrawableObject* skyBox = new DrawableObject(skycube, sizeof(skycube), 108, boxShader, texture_box, 0);
+        DrawableObject* skyBox = new DrawableObject(skycube, sizeof(skycube), 108, boxShader, texture_box, -1);
         Texture* texture_house = new Texture("house.png");
         camera->addObserver(boxShader);
         addObject(skyBox);
@@ -170,13 +183,15 @@ void Scene::initialize() {
             float randScale = 0.05f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (0.2f - 0.05f)));
             int randAngle = std::rand() % 361;
 
-            DrawableObject* treeObject = new DrawableObject(tree, sizeof(tree), 92814, shader1, matTree);
+            DrawableObject* treeObject = new DrawableObject(tree, sizeof(tree), 92814, shader1, matTree, modelId);
             treeObject->getTransformation()->addTranslate(glm::vec3(randX, 0.0f, randZ));
             treeObject->getTransformation()->addRotate(randAngle, glm::vec3(0.0f, 1.0f, 0.0f));
             treeObject->getTransformation()->addScale(glm::vec3(randScale));
 
             addObject(treeObject);
+            modelId++;
         }
+        objects[1]->getTransformation()->addDynamicRotate(0.05f, 0.05f, glm::vec3(0.0f, 1.0f, 0.0f));
         for (int i = 0; i < 50; i++) {
             float randX, randZ;
             do {
@@ -186,26 +201,28 @@ void Scene::initialize() {
             float randScale = 0.3f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (0.8f - 0.3f)));
             int randAngle = std::rand() % 361;
 
-            DrawableObject* bushObject = new DrawableObject(bushes, sizeof(bushes), 8730, shader1, matTree);
+            DrawableObject* bushObject = new DrawableObject(bushes, sizeof(bushes), 8730, shader1, matTree, modelId);
             bushObject->getTransformation()->addTranslate(glm::vec3(randX, 0.0f, randZ));
             bushObject->getTransformation()->addRotate(randAngle, glm::vec3(0.0f, 1.0f, 0.0f));
             bushObject->getTransformation()->addScale(glm::vec3(randScale));
 
             addObject(bushObject);
+            modelId++;
         }
-        DrawableObject* floor = new DrawableObject(plain_texture, sizeof(plain_texture), 6, shader2, matFloor, texture_floor, 1);
+        DrawableObject* floor = new DrawableObject(plain_texture, sizeof(plain_texture), 6, shader2, matFloor, texture_floor, 1, modelId);
         floor->getTransformation()->addScale(glm::vec3(4));
         addObject(floor);
-
-        DrawableObject* house = new DrawableObject("house.obj", shader3, texture_house, 2);
+        modelId++;
+        DrawableObject* house = new DrawableObject("house.obj", shader3, texture_house, 2, modelId);
         house->getTransformation()->addScale(glm::vec3(0.15));
         addObject(house);
-
-        DrawableObject* login = new DrawableObject("login.obj", shader2, texture_floor, 1);
+        modelId++;
+        DrawableObject* login = new DrawableObject("login.obj", shader2, texture_floor, 1, modelId);
         login->getTransformation()->addTranslate(glm::vec3(0.0f, 1.0f, 0.0f));
         addObject(login);
     }
-    else if (sceneNum == 2) { // Roztočit 1 strom kolem své osy
+    else if (sceneNum == 2) {
+        int modelId = 0;
         ShaderProgram* shader1 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong);
         ShaderProgram* shader2 = new ShaderProgram(vertex_shader_phong_texture, fragment_shader_phong_texture);
         SpotLight* spotLight = new SpotLight(camera->getPosition(), camera->getForward(), 12.5f, 17.5f);
@@ -237,12 +254,13 @@ void Scene::initialize() {
             float randScale = 0.05f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (0.2f - 0.05f)));
             int randAngle = std::rand() % 361;
 
-            DrawableObject* treeObject = new DrawableObject(tree, sizeof(tree), 92814, shader1, matTree);
+            DrawableObject* treeObject = new DrawableObject(tree, sizeof(tree), 92814, shader1, matTree, modelId);
             treeObject->getTransformation()->addTranslate(glm::vec3(randX, 0.0f, randZ));
             treeObject->getTransformation()->addRotate(randAngle, glm::vec3(0.0f, 1.0f, 0.0f));
             treeObject->getTransformation()->addScale(glm::vec3(randScale));
 
             addObject(treeObject);
+            modelId++;
         }
         for (int i = 0; i < 50; i++) {
             float randX = -3.0f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (6.0f)));
@@ -250,24 +268,26 @@ void Scene::initialize() {
             float randScale = 0.3f + static_cast<float>(std::rand()) / (static_cast<float>(RAND_MAX / (0.8f - 0.3f)));
             int randAngle = std::rand() % 361;
 
-            DrawableObject* bushObject = new DrawableObject(bushes, sizeof(bushes), 8730, shader1, matTree);
+            DrawableObject* bushObject = new DrawableObject(bushes, sizeof(bushes), 8730, shader1, matTree, modelId);
             bushObject->getTransformation()->addTranslate(glm::vec3(randX, 0.0f, randZ));
             bushObject->getTransformation()->addRotate(randAngle, glm::vec3(0.0f, 1.0f, 0.0f));
             bushObject->getTransformation()->addScale(glm::vec3(randScale));
 
             addObject(bushObject);
+            modelId++;
         }
-        DrawableObject* floor = new DrawableObject(plain_texture, sizeof(plain_texture), 6, shader2, matFloor, texture_floor, 1);
+        DrawableObject* floor = new DrawableObject(plain_texture, sizeof(plain_texture), 6, shader2, matFloor, texture_floor, 1, modelId);
         floor->getTransformation()->addScale(glm::vec3(4));
         addObject(floor);
     }
     else if (sceneNum == 3) {
         ShaderProgram* shader1 = new ShaderProgram(vertex_shader, fragment_shader);
         ShaderProgram* shader2 = new ShaderProgram(vertex_shader2, fragment_shader2);
-        addObject(new DrawableObject(points1, sizeof(points1), 6, shader1, matSphere));
-        addObject(new DrawableObject(points2, sizeof(points2), 3, shader2, matSphere));
+        addObject(new DrawableObject(points1, sizeof(points1), 6, shader1, matSphere, 0));
+        addObject(new DrawableObject(points2, sizeof(points2), 3, shader2, matSphere, 1));
     }
     else if (sceneNum == 4) {
+        int modelId = 0;
         ShaderProgram* shader1 = new ShaderProgram(vertex_shader_phong, fragment_shader_phong);
         camera->addObserver(shader1);
         shader1->use();
@@ -279,16 +299,17 @@ void Scene::initialize() {
         shader1->stop();
 
         glm::vec3 positions[] = {
-            glm::vec3(0.0f, 2.0f, 0.0f),
-            glm::vec3(-2.0f, 0.0f, 0.0f),
-            glm::vec3(2.0f, 0.0f, 0.0f),
-            glm::vec3(0.0f, -2.0f, 0.0f)
+            glm::vec3(0.0f, 0.5f, 0.0f),
+            glm::vec3(-0.5f, 0.0f, 0.0f),
+            glm::vec3(0.5f, 0.0f, 0.0f),
+            glm::vec3(0.0f, -0.5f, 0.0f)
         };
         for (const auto& pos : positions) {
-            DrawableObject* spheres = new DrawableObject(sphere, sizeof(sphere), 2880, shader1, matSphere);
+            DrawableObject* spheres = new DrawableObject(sphere, sizeof(sphere), 2880, shader1, matSphere, modelId);
             spheres->getTransformation()->addScale(glm::vec3(0.3));
             spheres->getTransformation()->addTranslate(pos);
             addObject(spheres);
+            modelId++;
         }
     }
     else if (sceneNum == 5) {
@@ -311,24 +332,24 @@ void Scene::initialize() {
         }
 
         glm::vec3 positions[] = {
-            glm::vec3(0.0f, 2.0f, 0.0f),
-            glm::vec3(-2.0f, 0.0f, 0.0f),
-            glm::vec3(1.0f, 0.0f, 0.0f),
-            glm::vec3(0.0f, -6.0f, 0.0f)
+            glm::vec3(0.0f, 0.5f, 0.0f),
+            glm::vec3(-0.5f, 0.0f, 0.0f),
+            glm::vec3(0.5f, 0.0f, 0.0f),
+            glm::vec3(0.0f, -0.5f, 0.0f)
         };
-        DrawableObject* sphere1 = new DrawableObject(sphere, sizeof(sphere), 2880, shaders[2], matSphere);
+        DrawableObject* sphere1 = new DrawableObject(sphere, sizeof(sphere), 2880, shaders[3], matSphere, 0);
         sphere1->getTransformation()->addScale(glm::vec3(0.2));
         sphere1->getTransformation()->addTranslate(positions[0]);
         addObject(sphere1);
-        DrawableObject* suzi = new DrawableObject(suziFlat, sizeof(suziFlat), 2904, shaders[1], matSphere);
+        DrawableObject* suzi = new DrawableObject(suziFlat, sizeof(suziFlat), 2904, shaders[1], matSphere, 1);
         suzi->getTransformation()->addScale(glm::vec3(0.3));
         suzi->getTransformation()->addTranslate(positions[1]);
         addObject(suzi);
-        DrawableObject* bush = new DrawableObject(bushes, sizeof(bushes), 8730, shaders[0], matSphere);
+        DrawableObject* bush = new DrawableObject(bushes, sizeof(bushes), 8730, shaders[0], matSphere, 2);
         bush->getTransformation()->addScale(glm::vec3(0.5));
         bush->getTransformation()->addTranslate(positions[2]);
         addObject(bush);
-        DrawableObject* tree1 = new DrawableObject(tree, sizeof(tree), 92814, shaders[3], matSphere);
+        DrawableObject* tree1 = new DrawableObject(tree, sizeof(tree), 92814, shaders[2], matSphere, 3);
         tree1->getTransformation()->addScale(glm::vec3(0.05));
         tree1->getTransformation()->addTranslate(positions[3]);
         addObject(tree1);
@@ -342,9 +363,14 @@ void Scene::addObject(DrawableObject* object) {
     objects.push_back(object);
 }
 
-void Scene::draw() const {
-    if (sceneNum == 1) {
-        objects[1]->getTransformation()->addRotate(0.05f, glm::vec3(0.0f, 1.0f, 0.0f));
+void Scene::draw() {
+    bool move = bezMove;
+    if (move) {
+        if (t >= 1.0f || t <= 0.0f) step *= -1;
+        glm::vec4 parameters = glm::vec4(t * t * t, t * t, t, 1.0f);
+        glm::vec3 position = parameters * A * glm::transpose(B);
+        objects[selectedObjectId]->getTransformation()->addTranslate(position);
+        t += step;
     }
     for (const auto& object : objects) {
         object->draw();

@@ -1,8 +1,8 @@
 #include "DrawableObject.h"
 #include "Camera.h"
 
-DrawableObject::DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Material* mat) {
-    this->model = new Model(vertices, size, vertexCount);
+DrawableObject::DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Material* mat, int modelId) {
+    this->model = new Model(vertices, size, vertexCount, modelId);
     this->shaderProgram = shader;
     this->transform = new Transformation();
     this->mat = mat;
@@ -10,9 +10,9 @@ DrawableObject::DrawableObject(const float* vertices, size_t size, int vertexCou
     this->offset = NULL;
 }
 
-DrawableObject::DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Material* mat, Texture* texture, GLuint offset) {
+DrawableObject::DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Material* mat, Texture* texture, GLuint offset, int modelId) {
 
-    this->model = new TextureModel(vertices, size, vertexCount);
+    this->model = new TextureModel(vertices, size, vertexCount, modelId);
     this->shaderProgram = shader;
     this->transform = new Transformation();
     this->mat = mat;
@@ -29,11 +29,11 @@ DrawableObject::DrawableObject(const float* vertices, size_t size, int vertexCou
     this->offset = offset;
 }
 
-DrawableObject::DrawableObject(std::string fileName, ShaderProgram* shader, Texture* texture, GLuint offset)
+DrawableObject::DrawableObject(std::string fileName, ShaderProgram* shader, Texture* texture, GLuint offset, int modelId)
 {
     ModelLoader* ml = new ModelLoader();
     ml->load(fileName);
-    this->model = new ObjectModel(ml->getModel(), ml->getVertexCount(), ml->getIndeces());
+    this->model = new ObjectModel(ml->getModel(), ml->getVertexCount(), ml->getIndeces(),ml->getNumVertices(), modelId);
     this->shaderProgram = shader;
     this->transform = new Transformation();
     this->mat = nullptr;

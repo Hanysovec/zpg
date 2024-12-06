@@ -6,6 +6,7 @@
 #include "Scale.h"
 #include "Translate.h"
 #include "Rotate.h"
+#include "DynamicRotate.h"
 
 /*class Transformation { // vector transformaci(objektu) a muzu kdykoliv pristoupit, rodicovska trida a z te dedi rotate atd.
 public:
@@ -26,6 +27,7 @@ public:
     void addTranslate(const glm::vec3& offset);
     void addRotate(float angle, const glm::vec3& axis);
     void addScale(const glm::vec3& scaleF);
+    void addDynamicRotate(float angle, float speed, const glm::vec3& axis);
     const glm::mat4& getMatrix() const;
 };
 

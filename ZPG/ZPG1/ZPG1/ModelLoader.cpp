@@ -10,26 +10,14 @@ void ModelLoader::load(std::string fileName)
 
     const aiScene* scene = importer.ReadFile(fileName, importOptions);
 
-    if (scene) { //pokud bylo nacteni uspesne
+    if (scene) {
         printf("scene->mNumMeshes = %d\n", scene->mNumMeshes);
-        /*printf("scene->mNumMaterials = %d\n", scene->mNumMaterials);
-        //Materials
-        for (unsigned int i = 0; i < scene->mNumMaterials; i++)
-        {
-            const aiMaterial* mat = scene->mMaterials[i];
-            aiString name;
-            mat->Get(AI_MATKEY_NAME, name);
-            printf("Material [%d] name %s\n", i, name.C_Str());
-            aiColor4D d;
-            glm::vec4 diffuse = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
-            if (AI_SUCCESS == aiGetMaterialColor(mat, AI_MATKEY_COLOR_DIFFUSE, &d))
-                diffuse = glm::vec4(d.r, d.g, d.b, d.a);
-        }*/
         for (unsigned int i = 0; i < scene->mNumMeshes; i++)
         {
             aiMesh* mesh = scene->mMeshes[i];
             model = new Vertex[mesh->mNumVertices];
             std::memset(model, 0, sizeof(Vertex) * mesh->mNumVertices);
+            this->mNumVertices = mesh->mNumVertices;
             for (unsigned int i = 0; i < mesh->mNumVertices; i++)
             {
                 if (mesh->HasPositions()) {
@@ -80,6 +68,9 @@ int ModelLoader::getVertexCount()
 unsigned int* ModelLoader::getIndeces()
 {
     return this->pIndices;
+}
+unsigned int ModelLoader::getNumVertices() {
+    return this->mNumVertices;
 }
 
 ModelLoader::~ModelLoader()

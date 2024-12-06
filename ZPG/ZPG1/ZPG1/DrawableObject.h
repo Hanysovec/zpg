@@ -11,10 +11,10 @@
 
 class DrawableObject {
 public:
-    DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Material* material);
-    DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Material* material, Texture* texture, GLuint offset);
+    DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Material* material, int modelId);
+    DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Material* material, Texture* texture, GLuint offset, int modelId);
     DrawableObject(const float* vertices, size_t size, int vertexCount, ShaderProgram* shader, Texture* texture, GLuint offset);
-    DrawableObject(std::string fileName, ShaderProgram* shader, Texture* texture, GLuint offset);
+    DrawableObject(std::string fileName, ShaderProgram* shader, Texture* texture, GLuint offset, int modelId);
     ~DrawableObject();
     void draw() const;
     void draw(int a) const;

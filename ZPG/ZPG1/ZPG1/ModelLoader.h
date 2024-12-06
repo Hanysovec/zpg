@@ -16,10 +16,12 @@ public:
     Vertex* getModel();
     int getVertexCount();
     unsigned int* getIndeces();
+    unsigned int getNumVertices();
     ~ModelLoader();
 private:
     int vertex_count;
     unsigned int* pIndices;
+    unsigned int mNumVertices;
     Vertex* model;
 };
 

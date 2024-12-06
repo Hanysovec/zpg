@@ -6,6 +6,6 @@ class Scale : public BaseTransform {
 
 public:
     Scale(const glm::vec3& scaleFactor);
-    glm::mat4 apply(const glm::mat4& matrix) const override;
+    glm::mat4 getMatrix(const glm::mat4& matrix) override;
 };
 

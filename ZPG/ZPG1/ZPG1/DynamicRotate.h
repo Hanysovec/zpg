@@ -1,12 +1,13 @@
 #pragma once
 #include "BaseTransform.h"
 #include <glm/gtc/matrix_transform.hpp>
-class Rotate : public BaseTransform {
+
+class DynamicRotate : public BaseTransform {
     float angle;
+    float rotationSpeed;
     glm::vec3 axis;
 
 public:
-    Rotate(float angle, const glm::vec3& axis);
+    DynamicRotate(float angle, float speed, const glm::vec3& axis);
     glm::mat4 getMatrix(const glm::mat4& matrix) override;
 };
-

@@ -3,37 +3,37 @@ C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(86,25): warning C4305: argument
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(90,26): warning C4305: argument: zkrácení z: double na: float
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(94,22): warning C4305: argument: zkrácení z: double na: float
 C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(98,23): warning C4305: argument: zkrácení z: double na: float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(162,29): warning C4244: argument: time_t se převádí na unsigned int; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(175,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(191,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(201,56): warning C4305: argument: zkrácení z: double na: T
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(201,56): warning C4305:         with
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(201,56): warning C4305:         [
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(201,56): warning C4305:             T=float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(201,56): warning C4305:         ]
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(233,29): warning C4244: argument: time_t se převádí na unsigned int; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(242,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(255,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(289,62): warning C4305: argument: zkrácení z: double na: T
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(289,62): warning C4305:         with
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(289,62): warning C4305:         [
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(289,62): warning C4305:             T=float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(289,62): warning C4305:         ]
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(320,58): warning C4305: argument: zkrácení z: double na: T
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(320,58): warning C4305:         with
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(320,58): warning C4305:         [
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(320,58): warning C4305:             T=float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(320,58): warning C4305:         ]
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(324,55): warning C4305: argument: zkrácení z: double na: T
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(324,55): warning C4305:         with
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(324,55): warning C4305:         [
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(324,55): warning C4305:             T=float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(324,55): warning C4305:         ]
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(332,56): warning C4305: argument: zkrácení z: double na: T
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(332,56): warning C4305:         with
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(332,56): warning C4305:         [
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(332,56): warning C4305:             T=float
-C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(332,56): warning C4305:         ]
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(175,29): warning C4244: argument: time_t se převádí na unsigned int; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(188,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(206,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(217,56): warning C4305: argument: zkrácení z: double na: T
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(217,56): warning C4305:         with
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(217,56): warning C4305:         [
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(217,56): warning C4305:             T=float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(217,56): warning C4305:         ]
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(250,29): warning C4244: argument: time_t se převádí na unsigned int; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(259,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(273,56): warning C4244: argument: int se převádí na float; může dojít ke ztrátě dat.
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(309,62): warning C4305: argument: zkrácení z: double na: T
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(309,62): warning C4305:         with
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(309,62): warning C4305:         [
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(309,62): warning C4305:             T=float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(309,62): warning C4305:         ]
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(341,58): warning C4305: argument: zkrácení z: double na: T
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(341,58): warning C4305:         with
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(341,58): warning C4305:         [
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(341,58): warning C4305:             T=float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(341,58): warning C4305:         ]
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(345,55): warning C4305: argument: zkrácení z: double na: T
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(345,55): warning C4305:         with
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(345,55): warning C4305:         [
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(345,55): warning C4305:             T=float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(345,55): warning C4305:         ]
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(353,56): warning C4305: argument: zkrácení z: double na: T
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(353,56): warning C4305:         with
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(353,56): warning C4305:         [
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(353,56): warning C4305:             T=float
+C:\Users\Jan\Desktop\zpg\ZPG\ZPG1\ZPG1\Scene.cpp(353,56): warning C4305:         ]
   SOIL.lib(SOIL.obj) : Našel se modul .net MSIL nebo modul zkompilovaný pomocí /GL. Propojení se restartuje s parametrem /LTCG. Výkon linkeru můžete zlepšit přidáním parametru /LTCG na příkazový řádek propojení.
 LINK : warning LNK4075: /INCREMENTAL se ignoruje kvůli specifikaci /LTCG.
 LINK : warning LNK4098: Výchozí knihovna MSVCRT je v konfliktu s použitím jiných knihoven. Použijte /NODEFAULTLIB:library.

@@ -14,6 +14,8 @@ Application::Application(int width, int height, const char* title) {
         glfwTerminate();
         exit(EXIT_FAILURE);
     }
+    this->width = width;
+    this->height = height;
 
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
@@ -25,7 +27,7 @@ Application::Application(int width, int height, const char* title) {
     glfwSetKeyCallback(window, key_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetMouseButtonCallback(window, mouse_button_callback);
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL); // dodelat na leve tlacitko
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     glfwSetFramebufferSizeCallback(window, window_size_callback);
 
     scene = new Scene(1);
@@ -57,6 +59,8 @@ void Application::run() {
     printf("Texture units: %d\n", a);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+    glEnable(GL_STENCIL_TEST);
+    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
     while (!glfwWindowShouldClose(window)) {
         render();
     }
@@ -150,6 +154,40 @@ void Application::mouse_button_callback(GLFWwindow* window, int button, int acti
         else if (action == GLFW_RELEASE) {
             instance->rightMouseButtonPressed = false;
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        }
+    }
+    if (button == GLFW_MOUSE_BUTTON_LEFT) {
+        if (action == GLFW_PRESS) {
+            double cursorX, cursorY;
+            glfwGetCursorPos(window, &cursorX, &cursorY);
+
+            GLint x = (GLint)cursorX;
+            GLint y = instance->height - (GLint)cursorY;
+            GLbyte color[4];
+            GLfloat depth;
+            GLuint index;
+            glReadPixels(x, y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, color);
+            glReadPixels(x, y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &depth);
+            glReadPixels(x, y, 1, 1, GL_STENCIL_INDEX, GL_UNSIGNED_INT, &index);
+            printf("Clicked on pixel %d, %d, color %02hhx%02hhx%02hhx%02hhx, depth %f, stencil index %u\n", x, y, color[0], color[1], color[2], color[3], depth, index);
+            if (!instance->selectingControlPoints) {
+                if (index != -1) {
+                    instance->selectedObjectIndex = index;
+                    instance->selectingControlPoints = true;
+                    instance->controlPoints.clear();
+                }
+            }
+            glm::vec3 screenPos = glm::vec3(x, y, depth);
+            glm::mat4 view = instance->getCurrentScene()->getCamera()->getViewMatrix();
+            glm::mat4 projection = instance->getCurrentScene()->getCamera()->getProjectionMatrix();
+            glm::vec4 viewport = glm::vec4(0, 0, instance->width, instance->height);
+            glm::vec3 worldPos = glm::unProject(screenPos, view, projection, viewport);
+            printf("unProject [%f,%f,%f]\n", worldPos.x, worldPos.y, worldPos.z);
+            instance->controlPoints.push_back(worldPos);
+            if (instance->controlPoints.size() == 4) {
+                instance->getCurrentScene()->moveBezier(instance->selectedObjectIndex, instance->controlPoints);
+                instance->selectingControlPoints = false;
+            }
         }
     }
 }

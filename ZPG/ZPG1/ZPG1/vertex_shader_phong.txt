@@ -10,5 +10,5 @@ out vec3 ex_worldNormal;
 void main(void) {
 gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * vec4(vp, 1.0f);
 ex_worldPosition = modelMatrix * vec4(vp, 1.0f);
-ex_worldNormal = normalMatrix * vn;
+ex_worldNormal = normalize(normalMatrix * vn);
 }

@@ -88,3 +88,4 @@ void Camera::rotate(float deltaYaw, float deltaPitch) {
     target = position + forward;
     updateViewMatrix();
 }
+
